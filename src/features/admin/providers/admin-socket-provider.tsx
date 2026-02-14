@@ -29,7 +29,7 @@ export default function AdminSocketProvider({
         let ws: WebSocket;
 
         const connect = () => {
-            ws = new WebSocket(`wss://gamifient-dev.quantex-ai.com?role=admin&app_name=gamifient`);
+            ws = new WebSocket(`wss://vonjo-dev.quantex-ai.com?role=admin&app_name=gamifient`);
 
             ws.onopen = () => {
                 console.log('ADMIN SOCKET CONNECTED');
