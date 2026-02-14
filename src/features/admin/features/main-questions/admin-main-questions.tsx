@@ -81,126 +81,124 @@ export function AdminMainQuestions() {
   }
 
   return (
-    <div className="w-full h-full">
-      <AnimatePresence mode="wait">
-        {showDrawVideo ? (
-          <EnterExit
-            key='video'
-            className="fixed inset-0 z-50 flex top-0 left-0 w-full h-full flex-col items-center justify-center bg-black bg-opacity-90"
+    <>
+      {showDrawVideo ? (
+        <EnterExit
+          key='video'
+          className="fixed inset-0 z-50 flex top-0 left-0 w-full h-full flex-col items-center justify-center bg-black bg-opacity-90"
+        >
+          <VideoPlayer
+            src="/assets/videos/draw.mp4"
+            className="w-full h-full object-cover"
+            autoPlay
+            playsInline
+          />
+          {/* {drawVideoEnded && ( */}
+          <GameButton
+            className="h-14 absolute bottom-8 left-1/2 -translate-x-1/2  text-xl px-32 py-0 font-extrabold mt-8 "
+            onClick={handleUnholdDraw}
           >
-            <VideoPlayer
-              src="/assets/videos/draw.mp4"
-              className="w-full h-full object-cover"
-              autoPlay
-              playsInline
-            />
-            {/* {drawVideoEnded && ( */}
-            <GameButton
-              className="h-14 absolute bottom-8 left-1/2 -translate-x-1/2  text-xl px-32 py-0 font-extrabold mt-8 "
-              onClick={handleUnholdDraw}
-            >
-              NEXT
-            </GameButton>
-            {/* )} */}
-          </EnterExit>
-        ) : (
-          <ContentLayout key='card' personSrc="/assets/images/person.png">
-            <div className="flex flex-col items-end gap-4">
-              <PhaseCard>
-                <PhaseCardHeader
-                  className="flex items-center justify-center"
-                  containerProps={{
-                    className: "h-6 overflow-hidden",
-                  }}
-                />
-                <PhaseCardContent
-                  className="relative"
-                  imageProps={{
-                    className: "hidden",
-                  }}
-                  containerProps={{
-                    className: "bg-transparent",
-                  }}
-                >
-                  {currentQuestion ? (
-                    <div className="space-y-3">
-                      <div className="py-8 space-y-10 bg-black/50 px-16">
-                        <div className="flex justify-between gap-6">
-                          <div className="size-28 shrink-0">
-                            <img
-                              className="w-full h-full object-contain"
-                              src="/assets/images/icons/golden-trophy.webp"
-                              alt=""
-                            />
-                          </div>
-                          <h1 className="text-3xl font-bold text-center uppercase">
-                            {currentQuestion.question.question}
-                          </h1>
-                          <div className="size-24 shrink-0">
-                            <CountdownTimer initialSeconds={60} />
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-8 gap-x-20 w-9/10 max-w-3xl mx-auto">
-                          {currentQuestion.question.answers.map((answer) => (
-                            <Answer
-                              key={answer.id}
-                              answer={answer}
-                              hasTimedOut={false}
-                              selectedAnswerId={null}
-                              onAnswer={() => { }}
-                              className="pointer-events-none"
-                            />
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex justify-between items-center bg-black/50 px-20 border-l border-yellow-500 py-8 border-r border-t">
-                        <div className="flex-1">
-                          <TeamLogo
-                            src={currentQuestion.club.logo_img_url}
-                            name={currentQuestion.club.name}
-                          />
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <div className="text-3xl font-bold">SCORE</div>
-                          <div className="text-7xl px-5 font-bold italic bg-linear-to-r from-yellow-500 via-yellow-100 to-yellow-300 text-transparent bg-clip-text">
-                            {currentQuestion.score}
-                          </div>
-                          <div className="text-sm font-bold">TOTAL POINTS</div>
-                        </div>
-                        <div className="flex-1">
+            NEXT
+          </GameButton>
+          {/* )} */}
+        </EnterExit>
+      ) : (
+        <ContentLayout key='card' personSrc="/assets/images/person.png">
+          <div className="flex flex-col items-end gap-4">
+            <PhaseCard>
+              <PhaseCardHeader
+                className="flex items-center justify-center"
+                containerProps={{
+                  className: "h-6 overflow-hidden",
+                }}
+              />
+              <PhaseCardContent
+                className="relative"
+                imageProps={{
+                  className: "hidden",
+                }}
+                containerProps={{
+                  className: "bg-transparent",
+                }}
+              >
+                {currentQuestion ? (
+                  <div className="space-y-3">
+                    <div className="py-8 space-y-10 bg-black/50 px-16">
+                      <div className="flex justify-between gap-6">
+                        <div className="size-28 shrink-0">
                           <img
-                            className="rounded-2xl ml-auto w-40 aspect-4/5"
-                            src={currentQuestion?.used_magic_card ? '/assets/images/golden-card.webp' : currentQuestion.question.img_url}
-                            alt="Footer"
+                            className="w-full h-full object-contain"
+                            src="/assets/images/icons/golden-trophy.webp"
+                            alt=""
                           />
                         </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="py-20 px-16 bg-black/50 flex flex-col items-center justify-center space-y-8">
-                      <img
-                        className="object-contain size-32 shrink-0"
-                        src="/assets/images/icons/golden-trophy.webp"
-                        alt=""
-                      />
-                      <div className="space-y-3 text-center">
-                        <h1 className="text-4xl font-bold uppercase bg-linear-to-r from-yellow-500 via-yellow-100 to-yellow-300 text-transparent bg-clip-text">
-                          No Question Selected
+                        <h1 className="text-3xl font-bold text-center uppercase">
+                          {currentQuestion.question.question}
                         </h1>
-                        <p className="text-xl text-gray-300 font-medium">
-                          Please select a question to display
-                        </p>
+                        <div className="size-24 shrink-0">
+                          <CountdownTimer initialSeconds={60} />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-8 gap-x-20 w-9/10 max-w-3xl mx-auto">
+                        {currentQuestion.question.answers.map((answer) => (
+                          <Answer
+                            key={answer.id}
+                            answer={answer}
+                            hasTimedOut={false}
+                            selectedAnswerId={null}
+                            onAnswer={() => { }}
+                            className="pointer-events-none"
+                          />
+                        ))}
                       </div>
                     </div>
-                  )}
-                </PhaseCardContent>
-                <PhaseCardFooter />
-              </PhaseCard>
-            </div>
-          </ContentLayout>
-        )}
-      </AnimatePresence>
-    </div>
+
+                    <div className="flex justify-between items-center bg-black/50 px-20 border-l border-yellow-500 py-8 border-r border-t">
+                      <div className="flex-1">
+                        <TeamLogo
+                          src={currentQuestion.club.logo_img_url}
+                          name={currentQuestion.club.name}
+                        />
+                      </div>
+                      <div className="flex flex-col items-center">
+                        <div className="text-3xl font-bold">SCORE</div>
+                        <div className="text-7xl px-5 font-bold italic bg-linear-to-r from-yellow-500 via-yellow-100 to-yellow-300 text-transparent bg-clip-text">
+                          {currentQuestion.score}
+                        </div>
+                        <div className="text-sm font-bold">TOTAL POINTS</div>
+                      </div>
+                      <div className="flex-1">
+                        <img
+                          className="rounded-2xl ml-auto w-40 aspect-4/5"
+                          src={currentQuestion?.used_magic_card ? '/assets/images/golden-card.webp' : currentQuestion.question.img_url}
+                          alt="Footer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="py-20 px-16 bg-black/50 flex flex-col items-center justify-center space-y-8">
+                    <img
+                      className="object-contain size-32 shrink-0"
+                      src="/assets/images/icons/golden-trophy.webp"
+                      alt=""
+                    />
+                    <div className="space-y-3 text-center">
+                      <h1 className="text-4xl font-bold uppercase bg-linear-to-r from-yellow-500 via-yellow-100 to-yellow-300 text-transparent bg-clip-text">
+                        No Question Selected
+                      </h1>
+                      <p className="text-xl text-gray-300 font-medium">
+                        Please select a question to display
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </PhaseCardContent>
+              <PhaseCardFooter />
+            </PhaseCard>
+          </div>
+        </ContentLayout>
+      )}
+    </>
   );
 }
