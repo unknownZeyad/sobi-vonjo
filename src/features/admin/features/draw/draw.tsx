@@ -1,15 +1,15 @@
 import EnterExit from '@/core/components/derived/enter-exit'
+import VideoPlayer from '@/core/components/derived/video-player'
 import { motion } from 'motion/react'
 
 function Draw() {
   return (
     <EnterExit className="realtive">
-      <video
+      <VideoPlayer
         src="/assets/videos/final-winner.mp4"
         className="w-full h-full object-cover"
         autoPlay
         playsInline
-        preload="auto"
       />
       <div className="absolute bottom-0 left-0">
         <div className="relative">

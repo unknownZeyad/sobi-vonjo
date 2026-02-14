@@ -3,6 +3,7 @@ import GameButton from '@/core/components/derived/game-button'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { useAdminSocket } from '../../providers/admin-socket-provider'
+import VideoPlayer from '@/core/components/derived/video-player'
 
 function SpeedIntro() {
   const [videoEnded, setVideoEnded] = useState<boolean>(false)
@@ -17,18 +18,21 @@ function SpeedIntro() {
 
   return (
     <EnterExit>
-      <motion.video
-        src="/assets/videos/startSpeedQuestions.mp4"
-        className="w-full h-full object-cover"
-        autoPlay
-        playsInline
-        preload="auto"
+      <motion.div
         initial={{ opacity: 0, scale: 1.05, filter: "blur(16px)" }}
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         exit={{ opacity: 0, scale: 0.98, filter: "blur(12px)" }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        onEnded={() => setVideoEnded(true)}
-      />
+      >
+        <VideoPlayer
+          className="w-full h-full object-cover"
+          src="/assets/videos/startSpeedQuestions.mp4"
+          autoPlay
+          playsInline
+          onEnded={() => setVideoEnded(true)}
+        />
+      </motion.div>
+
 
       <AnimatePresence mode="wait">
         <motion.div

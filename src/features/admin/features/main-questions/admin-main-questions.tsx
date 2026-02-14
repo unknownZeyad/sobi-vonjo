@@ -18,6 +18,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useAudio } from "@/core/providers/audio-provider";
 import GameButton from "@/core/components/derived/game-button";
 import { flushSync } from "react-dom";
+import VideoPlayer from "@/core/components/derived/video-player";
 
 
 const CORRECT_AUDIOS = [
@@ -87,7 +88,7 @@ export function AdminMainQuestions() {
             key='video'
             className="fixed inset-0 z-50 flex top-0 left-0 w-full h-full flex-col items-center justify-center bg-black bg-opacity-90"
           >
-            <video
+            <VideoPlayer
               src="/assets/videos/draw.mp4"
               className="w-full h-full object-cover"
               autoPlay

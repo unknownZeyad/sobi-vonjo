@@ -6,6 +6,7 @@ import { motion, AnimatePresence, Variants } from "motion/react";
 
 import sobiLogo from "@public/assets/images/Sobi-Logo.webp";
 import sobiFantasyGameLogo from "@public/assets/images/Sobi-Fantasy-Game-Logo.webp";
+import VideoPlayer from "./video-player";
 
 const mediaVariants: Variants = {
   initial: {
@@ -108,13 +109,12 @@ export default function WelcomingVideos({
             }}
             className="absolute inset-0 bg-black"
           >
-            <video
+            <VideoPlayer
               src="/assets/videos/intro.mp4"
               className="w-full h-full object-cover"
               autoPlay
               playsInline
               muted={muted}
-              preload="auto"
               onEnded={onEnd}
             />
           </motion.div>

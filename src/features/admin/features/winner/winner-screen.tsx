@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import EnterExit from "@/core/components/derived/enter-exit";
 import { useAdminData } from "../../providers/admin-data-provider";
 import ContentLayout from "@/core/components/layout/content-layout";
+import VideoPlayer from "@/core/components/derived/video-player";
 
 export function WinnerScreen() {
   const { winner } = useAdminData();
@@ -9,12 +10,11 @@ export function WinnerScreen() {
 
   return (
     <EnterExit className="realtive">
-      <video
+      <VideoPlayer
         src="/assets/videos/final-winner.mp4"
         className="w-full h-full object-cover"
         autoPlay
         playsInline
-        preload="auto"
       />
       <div className="absolute bottom-0 left-0">
         <div className="relative">

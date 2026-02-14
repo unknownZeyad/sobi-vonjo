@@ -6,6 +6,7 @@ import GameButton from "@/core/components/derived/game-button";
 import { useAdminPhases } from "../../providers/admin-phases-provider";
 import EnterExit from "@/core/components/derived/enter-exit";
 import { useAdminSocket } from "../../providers/admin-socket-provider";
+import VideoPlayer from "@/core/components/derived/video-player";
 
 export default function Explain() {
   const { setPhase } = useAdminPhases();
@@ -14,18 +15,21 @@ export default function Explain() {
 
   return (
     <EnterExit>
-      <motion.video
-        src="/assets/videos/welcome.mp4"
-        className="w-full h-full object-cover"
-        autoPlay
-        playsInline
-        preload="auto"
+      <motion.div
         initial={{ opacity: 0, scale: 1.05, filter: "blur(16px)" }}
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         exit={{ opacity: 0, scale: 0.98, filter: "blur(12px)" }}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        onEnded={() => setVideoEnded(true)}
-      />
+        className="w-full h-full"
+      >
+        <VideoPlayer
+          className="w-full h-full object-cover"
+          src="/assets/videos/welcome.mp4"
+          autoPlay
+          playsInline
+          onEnded={() => setVideoEnded(true)}
+        />
+      </motion.div>
 
       <AnimatePresence mode="wait">
         <motion.div

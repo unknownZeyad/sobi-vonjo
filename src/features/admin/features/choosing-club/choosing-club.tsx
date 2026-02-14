@@ -17,6 +17,7 @@ import person from '@public/assets/images/person.png'
 import { useEffect, useState } from "react";
 import { useAudio } from "@/core/providers/audio-provider";
 import { useAdminData } from "../../providers/admin-data-provider";
+import VideoPlayer from "@/core/components/derived/video-player";
 
 export function ChoosingClub() {
   const { stopAudio, playAudio } = useAudio();
@@ -50,7 +51,7 @@ export function ChoosingClub() {
           <div
             className="fixed inset-0 z-50 flex top-0 left-0 w-full h-full flex-col items-center justify-center bg-black bg-opacity-90"
           >
-            <video
+            <VideoPlayer
               src={"/assets/videos/PlayerSelection.mp4"}
               autoPlay
               controls={false}
